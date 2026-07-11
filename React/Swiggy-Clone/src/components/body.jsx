@@ -1,57 +1,50 @@
 import { swiggyURL } from "../mockData/constants";
 import RestaurantCard from "./RestaurantCard";
-import { resArr } from "../mockData/reslist";
 import { Shimmer } from "./RestaurantSkeleton";
-import { TopShimmer } from "./TopSkeleton";
 import { useEffect, useState } from "react";
 
-const Body = () => {
+const Body = ({ searchText }) => {
   const [hotelList, setHotelList] = useState([]);
+  const [filteredHotelList, setFilteredHotelList] = useState([]);
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    const filtered = hotelList.filter((resObj) =>
+      resObj.info.name
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
+    );
+
+    setFilteredHotelList(filtered);
+  }, [searchText, hotelList]);
+
   const getData = async () => {
-    // const response = await fetch (
-    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.374638644228302&lng=78.4300148114562&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    // );
     const response = await fetch(swiggyURL);
     const data = await response.json();
-    // console.log(data);
-    console.log(
-      data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
-    );
 
-    setHotelList(
-      data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
-    );
+    const restaurants =
+      data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
-    console.log("hotel list", hotelList);
+    setHotelList(restaurants);
+    setFilteredHotelList(restaurants);
   };
 
-if (hotelList == 0) {
+  if (hotelList.length === 0) {
     return <Shimmer />;
   }
 
   return (
     <div className="body">
-      {/* <Shimmer/>
-    <div style={{margin: "100px "}}>
-      {" "}
-      <button onClick={getData}>Get data</button>{" "}
-    </div> */}
       <div className="res-container">
-        {/* {resArr.map((resObj) => (
+        {filteredHotelList.map((resObj) => (
           <RestaurantCard
-            key={resObj.id}
-            hotelData={resObj}
+            key={resObj.info.id}
+            hotelData={resObj.info}
           />
-        ))} */}
-        {hotelList.map((resObj) => {
-          return (
-            <RestaurantCard hotelData={resObj?.info} key={resObj?.info?.id} />
-          );
-        })}
+        ))}
       </div>
     </div>
   );
