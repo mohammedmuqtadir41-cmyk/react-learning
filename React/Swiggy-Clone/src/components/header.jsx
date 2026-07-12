@@ -25,7 +25,7 @@ const Header = ({searchText,setSearchText}) => {
           <li>Offers</li>
           <li>Help</li>
           <li>Sign in</li>
-          <li>Help</li>
+          <li>About</li>
           <li>Cart</li>
         </ul>
       </div>
