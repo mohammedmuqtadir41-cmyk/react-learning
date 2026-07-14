@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { topImages } from "../mockData/topImg";
 import { TopShimmer } from "./TopSkeleton";
+import { imgBaseURL } from "../mockData/constants";
 
-const Top = () => {
+const Top = ({ topData }) => {
+  console.log(topData, "from top.jsx");
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,10 +24,10 @@ const Top = () => {
         {loading ? (
           <TopShimmer />
         ) : (
-          topImages.map((item) => (
+          topData.map((item) => (
             <div key={item.id} className="food-item">
-              <img src={item.image} alt={item.name} />
-              <p>{item.name}</p>
+              <img src={`${imgBaseURL}${item.imageId}`} alt={item.name} />
+              {/* <p>{item.action.text}</p> */}
             </div>
           ))
         )}
@@ -32,6 +35,5 @@ const Top = () => {
     </div>
   );
 };
-
 
 export default Top;

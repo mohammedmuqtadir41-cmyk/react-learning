@@ -1,4 +1,4 @@
-import { swiggyURL } from "../mockData/constants";
+import { MenuURL, swiggyURL } from "../mockData/constants";
 import RestaurantCard from "./RestaurantCard";
 import { Shimmer } from "./RestaurantSkeleton";
 import { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import Top from "./Top";
 
 const Body = ({ searchText = "" }) => {
   const [hotelList, setHotelList] = useState([]);
+  const [topData, setTopData] = useState([]);
+
   const [filteredHotelList, setFilteredHotelList] = useState([]);
 
   useEffect(() => {
@@ -18,18 +20,24 @@ const Body = ({ searchText = "" }) => {
     );
 
     setFilteredHotelList(filtered);
+
+    // console.log("test", searchText);
   }, [searchText, hotelList]);
+
 
   const getData = async () => {
     const response = await fetch(swiggyURL);
     const data = await response.json();
-
     const restaurants =
       data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants || [];
 
     setHotelList(restaurants);
     setFilteredHotelList(restaurants);
+
+    // const topData = data.data.cards[0].card.card.imageGridCards.info;
+    setTopData(data.data.cards[0].card.card.imageGridCards.info);
+    // console.log(setTopData);
   };
 
   if (hotelList.length === 0) {
@@ -54,7 +62,7 @@ const Body = ({ searchText = "" }) => {
 
   return (
     <div className="body">
-      <Top />
+      <Top topData={topData} />
       <div className="filter-container">
         <button onClick={topRated}>⭐Top Rated Restaurants</button>
         <button onClick={showAllRestaurants}>🍽️ All Restaurants</button>

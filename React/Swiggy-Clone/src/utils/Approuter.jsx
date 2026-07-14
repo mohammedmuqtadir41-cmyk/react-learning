@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const App = () => {
   const [searchText, setSearchText] = useState("");
+  //  const [hotelList, setHotelList] = useState([]);
   return (
     <div>
       <Header searchText={searchText} setSearchText={setSearchText} />

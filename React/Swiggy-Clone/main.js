@@ -9,6 +9,7 @@ import Body from "./src/components/Body";
 import Cart from "./src/pages/Cart";
 import Offers from "./src/pages/Offers";
 import Signin from "./src/pages/Signin";
+import { RestaurantMenu } from "./src/pages/RestaurantMenu";
 
 const appRouter = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
+      },
+      {
         path: "/help",
         element: <Help />,
       },
@@ -29,16 +34,17 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/offers",
-        element: <Offers />
+        element: <Offers />,
       },
       {
         path: "signin",
-        element: <Signin />
+        element: <Signin />,
       },
       {
         path: "/cart",
         element: <Cart />,
       },
+      
     ],
     errorElement: <Error />,
   },
