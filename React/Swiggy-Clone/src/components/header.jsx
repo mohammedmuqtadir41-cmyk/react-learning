@@ -5,6 +5,8 @@ import UserContext from "../Utils/UserContext";
 
 const Header = ({ searchText, setSearchText }) => {
   const data = useContext(UserContext);
+  console.log(data);
+  
   return (
     <header className="header">
       <div id="logo">
