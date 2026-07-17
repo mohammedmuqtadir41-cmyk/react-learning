@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { LogoURL } from "../Utils/constants";
+import UserContext from "../Utils/UserContext";
 
 const Header = ({ searchText, setSearchText }) => {
+  const data = useContext(UserContext);
   return (
     <header className="header">
       <div id="logo">
@@ -22,6 +24,7 @@ const Header = ({ searchText, setSearchText }) => {
 
       <div className="nav-items">
         <ul>
+          <li>{data.name}</li>
           <li>
             {" "}
             <Link to={"/offers"}>Offers</Link>
