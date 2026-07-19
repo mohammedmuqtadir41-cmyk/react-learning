@@ -479,4 +479,67 @@ body {
   color: inherit;
 }
 
-/* a{ text-decoration: none;} */
+.swiggy-filter-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #3f4255;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.swiggy-filter-btn.active {
+  background-color: #fc8019;
+  color: wheat;
+  border-color: white;
+  font-weight: 520;
+}
+.swiggy-filter-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.swiggy-filter-btn.active:hover {
+  background-color: #e66e0d;
+}
+
+/* Centered container holding the loader */
+.swiggy-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh; /* Takes up half the viewport height */
+  font-family: Arial, sans-serif;
+}
+
+/* Bouncing food emoji */
+.swiggy-loader-emoji {
+  font-size: 32px;
+  margin-bottom: 12px;
+  animation: swiggyBounce 0.6s infinite alternate ease-in-out;
+}
+
+/* Text style matching Swiggy's corporate branding */
+.swiggy-loader-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fc8019; /* Swiggy Signature Orange */
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-align: center;
+}
+
+/* Keyframes for the bounce animation */
+@keyframes swiggyBounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px); /* Bounces up by 15 pixels */
+  }
+}

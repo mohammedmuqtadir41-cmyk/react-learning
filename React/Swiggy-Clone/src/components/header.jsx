@@ -49,7 +49,7 @@ const Header = () => {
       <div className="nav-items">
         <ul>
           <li>
-            <button onClick={setFilter}>{fitlerToggle ? "Show All Restaurants " : " Top Rated Restaurants"}</button>
+            <button onClick={setFilter} className= {`swiggy-filter-btn ${fitlerToggle ? "active" : ""}`}>{fitlerToggle ? "Show All Restaurants " : " Top Rated Restaurants"}</button>
           </li>
           {/* <li>{data.name}</li> */}
           <li>
