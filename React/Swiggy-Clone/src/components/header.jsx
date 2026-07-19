@@ -33,7 +33,17 @@ const Header = () => {
       </div>
 
       <div id="search-bar">
-        <input type="text" />
+        <input type="text"
+        onChange={(e) => {
+          const filterList = allItems.filter((restaurant) => {
+            if(restaurant.info.name.toLowerCase().includes(e.target.value) === true){
+              return true;
+            } else {
+              return false;
+            }
+          })
+          setHotelList(filterList);
+        }} />
       </div>
 
       <div className="nav-items">
